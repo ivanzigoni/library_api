@@ -8,6 +8,13 @@ author(__id__, first_name, last_name, email)
 
 book(__id__, title, author_id[fk "author"])
 
+Tables under implementation (feature/add-genre)
+
+genre(__id__, name)
+
+book_genre(__id__, book_id[fk "book"], genre_id[fk "genre"])
+
+---------------------------------------------
 
 - dotenvexample file at root shows environment variables necessary to run the api
 
