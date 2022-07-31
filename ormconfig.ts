@@ -22,8 +22,8 @@ const config: MysqlConnectionOptions = {
   // entities: [__dirname + '/../**/*.entity{.ts,.js}'],
   // entities: [join(__dirname, '**', '*.entity.{ts,js}')],
   entities: ['dist/**/*.entity.js'],
-  migrations: ['dist/migrations/*.js'],
-  // migrations: ['src/migrations/*.ts'],
+  // migrations: ['dist/migrations/*.js'],
+  migrations: ['src/migrations/*.ts'],
   synchronize: false,
 };
 
