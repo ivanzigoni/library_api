@@ -1,19 +1,10 @@
-import { TypeOrmModule } from '@nestjs/typeorm';
 import { Module } from '@nestjs/common';
 import { AppController } from './controller/app.controller';
 import { AppService } from './service/app.service';
-import { CustomerModule } from '../customer/customer.module';
-import { BookModule } from '../book/book.module';
-import { AuthorModule } from '../author/author.module';
-import config from '../../../ormconfig';
+import imports from '../modules';
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot(config),
-    BookModule,
-    CustomerModule,
-    AuthorModule,
-  ],
+  imports,
   controllers: [AppController],
   providers: [AppService],
 })
