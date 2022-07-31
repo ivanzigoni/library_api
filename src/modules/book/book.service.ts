@@ -20,13 +20,13 @@ export class BookService {
   public async create(book: CreateBookDto) {
     const newBook = this.bookRepository.create(book);
 
-    // const author = await this.authorRepository.findOne({
-    //   where: { id: newBook.author_id },
-    // });
+    const author = await this.authorRepository.findOne({
+      where: { id: newBook.author_id },
+    });
 
-    // if (!author) {
-    //   throw new ForbiddenException({ message: "Author doesn't exist" });
-    // }
+    if (!author) {
+      throw new ForbiddenException({ message: "Author doesn't exist" });
+    }
 
     return this.bookRepository.save(newBook);
   }
