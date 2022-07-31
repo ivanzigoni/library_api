@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateAuthorDto } from './author.dto';
-import { Author } from './author.entity';
+import { CreateAuthorDto } from '../interfaces/author.dto';
+import { Author } from '../interfaces/author.entity';
 
 @Injectable()
 export class AuthorService {

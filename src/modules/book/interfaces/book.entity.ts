@@ -5,7 +5,7 @@ import {
   ManyToOne,
   JoinColumn,
 } from 'typeorm';
-import { Author } from '../author/author.entity';
+import { Author } from '../../author/interfaces/author.entity';
 
 @Entity()
 export class Book {

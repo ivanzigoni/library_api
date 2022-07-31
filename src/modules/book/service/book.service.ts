@@ -1,9 +1,9 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Author } from '../author/author.entity';
-import { CreateBookDto } from './book.dto';
-import { Book } from './book.entity';
+import { Author } from '../../author/interfaces/author.entity';
+import { CreateBookDto } from '../interfaces/book.dto';
+import { Book } from '../interfaces/book.entity';
 
 @Injectable()
 export class BookService {

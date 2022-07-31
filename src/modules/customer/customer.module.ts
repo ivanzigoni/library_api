@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CustomerController } from './customer.controller';
-import { Customer } from './customer.entity';
-import { CustomerService } from './customer.service';
+import { CustomerController } from './controller/customer.controller';
+import { Customer } from './interfaces/customer.entity';
+import { CustomerService } from './service/customer.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Customer])], // lista de repositórios usados por esse módulo

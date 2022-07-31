@@ -12,3 +12,5 @@ export class CreateAuthorDto {
   @IsEmail()
   email: string;
 }
+
+export class UpdateAuthorDto extends CreateAuthorDto {}
