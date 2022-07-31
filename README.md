@@ -20,7 +20,7 @@ book_genre(__id__, book_id[fk "book"], genre_id[fk "genre"])
 
 - no seeds available for now
 
-- swagger doc to be implementated
+- swagger doc to be implemented
 
 - "npm start" for running the api
 
