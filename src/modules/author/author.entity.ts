@@ -1,5 +1,11 @@
 import { IsOptional } from 'class-validator';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Book } from '../book/book.entity';
 
 @Entity()
@@ -17,6 +23,6 @@ export class Author {
   @IsOptional()
   email: string;
 
-  @OneToMany(() => Book, (book) => book.author_id)
+  @OneToMany(() => Book, (book) => book.author)
   books: Book[];
 }

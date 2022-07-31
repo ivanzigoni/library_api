@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
+import { Author } from '../author/author.entity';
 
 @Entity()
 export class Book {
@@ -10,4 +17,8 @@ export class Book {
 
   @Column()
   author_id: number;
+
+  @ManyToOne(() => Author, (author) => author.id)
+  @JoinColumn({ foreignKeyConstraintName: 'book_ibfk_1', name: 'author_id' })
+  author: Author;
 }
