@@ -10,7 +10,7 @@ const {
   MYSQL_DATABASE,
 } = process.env;
 
-// para app module
+// for app module
 const config: MysqlConnectionOptions = {
   type: 'mysql',
   host: MYSQL_HOST,
@@ -18,15 +18,14 @@ const config: MysqlConnectionOptions = {
   username: MYSQL_USERNAME,
   password: MYSQL_PASSWORD,
   database: MYSQL_DATABASE,
-  // entities: [],
-  // entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-  // entities: [join(__dirname, '**', '*.entity.{ts,js}')],
   entities: ['dist/**/*.entity.js'],
-  migrations: ['dist/migrations/*.js'],
+  // migrations: ['dist/migrations/*.js'],
+
   // migrations: ['src/migrations/*.ts'],
+  // uncomment only when running migrations, otherwise it'll break lol
   synchronize: false,
 };
 
-export const dataSource = new DataSource(config); // para migrations
+export const dataSource = new DataSource(config); // for migrations
 
 export default config;
