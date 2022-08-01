@@ -18,8 +18,8 @@ const config: MysqlConnectionOptions = {
   username: MYSQL_USERNAME,
   password: MYSQL_PASSWORD,
   database: MYSQL_DATABASE,
-  entities: ['dist/**/*.entity.js'],
-  // migrations: ['dist/migrations/*.js'],
+  // entities: ['dist/**/*.entity.js'],
+  migrations: ['dist/src/migrations/*.js'],
 
   // migrations: ['src/migrations/*.ts'],
   // uncomment only when running migrations, otherwise it'll break lol
