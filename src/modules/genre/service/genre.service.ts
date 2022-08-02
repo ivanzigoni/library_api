@@ -19,7 +19,7 @@ export class GenreService {
   }
 
   public async create(body: CreateGenreDto) {
-    const genreAlreadyExists = this.genreRepository.find({
+    const genreAlreadyExists = await this.genreRepository.findOne({
       where: { name: body.name },
     });
 

@@ -6,6 +6,7 @@ import {
   ManyToOne,
   JoinColumn,
   ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import { Author } from '../../author/interfaces/author.entity';
 
@@ -25,5 +26,16 @@ export class Book {
   author: Author;
 
   @ManyToMany(() => Genre)
+  @JoinTable({
+    name: 'book_genre',
+    joinColumn: {
+      name: 'book_id',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'genre_id',
+      referencedColumnName: 'id',
+    },
+  })
   genres: Genre[];
 }
