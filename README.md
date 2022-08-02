@@ -10,9 +10,11 @@ book(__id__, title, author_id[fk "author"])
 
 genre(__id__, name)
 
-Tables under implementation (feature/add-genre)
+book_genre(__book_id[fk "book"]__, __genre_id[fk "genre"]__)
 
-book_genre(__id__, book_id[fk "book"], genre_id[fk "genre"])
+Currently working on:
+
+Adding some more columns to existing entities and delete functionality for all cruds on system.
 
 ---------------------------------------------
 
