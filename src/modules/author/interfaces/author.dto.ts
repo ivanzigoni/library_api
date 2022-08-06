@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateAuthorDto {
   @IsString()
@@ -13,8 +13,18 @@ export class CreateAuthorDto {
   email: string;
 }
 
-export class UpdateAuthorDto extends CreateAuthorDto {}
+export class UpdateAuthorDto {
+  @IsOptional()
+  @IsString()
+  @IsNotEmpty()
+  first_name: string;
 
-export class AuthorRelationsDto {
-  books?: string;
+  @IsOptional()
+  @IsString()
+  @IsNotEmpty()
+  last_name: string;
+
+  @IsOptional()
+  @IsEmail()
+  email: string;
 }

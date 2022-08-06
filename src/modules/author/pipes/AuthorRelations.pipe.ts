@@ -3,13 +3,12 @@ import {
   ArgumentMetadata,
   ValidationPipe,
   ValidationError,
-  ForbiddenException,
   NotFoundException,
 } from '@nestjs/common';
 import { AUTHOR_RELATIONS } from '../interfaces/author.entity';
 
 @Injectable()
-export class GetAuthorsPipe extends ValidationPipe {
+export class RelationsValidationPipe extends ValidationPipe {
   async transform(
     query: { relations: string },
     // metadata: ArgumentMetadata,
