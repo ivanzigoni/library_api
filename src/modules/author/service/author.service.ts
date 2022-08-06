@@ -18,9 +18,7 @@ export class AuthorService {
     return this.authorRepository.findOne({ where: { id: +id } });
   }
 
-  public async create(body: CreateAuthorDto) {
-    const newAuthor = this.authorRepository.create(body);
-
-    return this.authorRepository.save(newAuthor);
+  public async create(author: Author) {
+    return this.authorRepository.save(author);
   }
 }
