@@ -2,6 +2,8 @@ import {
   Body,
   Controller,
   Get,
+  Param,
+  ParseIntPipe,
   Post,
   UsePipes,
   ValidationPipe,
@@ -20,8 +22,13 @@ export class AuthorController {
     return this.authorService.findAll();
   }
 
+  @Get(':id')
+  async getOneAuthor(@Param('id', ParseIntPipe) id: number) {
+    return this.authorService.findOne(id);
+  }
+
   @Post()
-  async anAuthor(@Body(CreateAuthorPipe) author: Author) {
-    return this.authorService.create(author);
+  async anAuthor(@Body(CreateAuthorPipe) author: CreateAuthorDto) {
+    return this.authorService.create(author as Author);
   }
 }

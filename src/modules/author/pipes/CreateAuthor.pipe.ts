@@ -11,7 +11,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateAuthorDto } from '../interfaces/author.dto';
 import { Author } from '../interfaces/author.entity';
-import { AuthorService } from '../service/author.service';
 
 @Injectable()
 export class CreateAuthorPipe extends ValidationPipe {
@@ -24,7 +23,7 @@ export class CreateAuthorPipe extends ValidationPipe {
   async transform(
     authorDto: CreateAuthorDto,
     // metadata: ArgumentMetadata,
-  ): Promise<any> {
+  ): Promise<Author> {
     await this.validate(authorDto);
 
     const author = this.authorRepository.create(authorDto);
