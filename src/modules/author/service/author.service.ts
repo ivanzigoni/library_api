@@ -13,8 +13,11 @@ export class AuthorService {
     return this.authorRepository.find({ relations });
   }
 
-  public async findOne(id: number) {
-    const author = await this.authorRepository.findOne({ where: { id } });
+  public async findOne(id: number, relations: string[]) {
+    const author = await this.authorRepository.findOne({
+      where: { id },
+      relations,
+    });
 
     if (!author) throw new NotFoundException('Author not found');
     else return author;

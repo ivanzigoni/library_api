@@ -20,15 +20,18 @@ import { AuthorService } from '../service/author.service';
 export class AuthorController {
   constructor(private authorService: AuthorService) {}
 
-  // query example: relations=books,otherRelation,another,etc
+  // query example: ?relations=books,otherRelation,another,etc
   @Get()
   async allAuthors(@Query(GetAuthorsPipe) relations: string[]) {
     return this.authorService.findAll(relations);
   }
 
   @Get(':id')
-  async getOneAuthor(@Param('id', ParseIntPipe) id: number) {
-    return this.authorService.findOne(id);
+  async getOneAuthor(
+    @Param('id', ParseIntPipe) id: number,
+    @Query(GetAuthorsPipe) relations: string[],
+  ) {
+    return this.authorService.findOne(id, relations);
   }
 
   @Post()
