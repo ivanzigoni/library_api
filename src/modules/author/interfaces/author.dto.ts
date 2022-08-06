@@ -14,3 +14,7 @@ export class CreateAuthorDto {
 }
 
 export class UpdateAuthorDto extends CreateAuthorDto {}
+
+export class AuthorRelationsDto {
+  books?: string;
+}

@@ -9,8 +9,8 @@ export class AuthorService {
     @InjectRepository(Author) private authorRepository: Repository<Author>,
   ) {}
 
-  public async findAll() {
-    return this.authorRepository.find({ relations: ['books'] });
+  public async findAll(relations: string[]) {
+    return this.authorRepository.find({ relations });
   }
 
   public async findOne(id: number) {
