@@ -1,36 +1,43 @@
 import {
   Injectable,
-  ArgumentMetadata,
   ValidationPipe,
   ValidationError,
   NotFoundException,
 } from '@nestjs/common';
-import { AUTHOR_RELATIONS } from '../interfaces/author.entity';
+import { AUTHOR_RELATIONS } from 'src/modules/author/interfaces/author.entity';
+
+const RELATIONS = {
+  author: AUTHOR_RELATIONS,
+};
 
 @Injectable()
 export class RelationsValidationPipe extends ValidationPipe {
   async transform(
-    query: { relations: string },
+    query: { entity: string; relations: string },
     // metadata: ArgumentMetadata,
   ): Promise<any> {
-    const { relations } = query;
+    const { entity, relations } = query;
 
-    if (!relations) return Promise.resolve([]);
+    if (!relations || !entity) return Promise.resolve([]);
 
     const relationsArray = relations.split(',');
 
-    await this.validate({ relationsArray });
-
+    await this.validate({ relationsArray, entity });
     return Promise.resolve(relationsArray);
   }
   protected async validate(
-    object: { relationsArray: string[] },
+    object: { relationsArray: string[]; entity: string },
     // validatorOptions?: ValidatorOptions,
   ): Promise<ValidationError[]> {
-    const { relationsArray } = object;
+    const { relationsArray, entity } = object;
+
+    const relationsByEntity = RELATIONS[entity];
+
+    if (!relationsByEntity)
+      throw new NotFoundException('Relations not found for this entity');
 
     relationsArray.forEach((queryRelation) => {
-      const result = AUTHOR_RELATIONS.find(
+      const result = relationsByEntity.find(
         (relation) => relation === queryRelation,
       );
 

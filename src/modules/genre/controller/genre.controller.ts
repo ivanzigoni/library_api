@@ -1,4 +1,13 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Query,
+} from '@nestjs/common';
+import { RelationsValidationPipe } from 'src/common/pipes/RelationsValidationPipe';
 import { CreateGenreDto } from '../interfaces/genre.dto';
 import { GenreService } from '../service/genre.service';
 
@@ -12,7 +21,10 @@ export class GenreController {
   }
 
   @Get(':id')
-  oneGenre(@Param('id') id: string) {
+  oneGenre(
+    @Param('id', ParseIntPipe) id: string,
+    @Query(RelationsValidationPipe) relations: string[],
+  ) {
     return this.genreService.findOne(id);
   }
 
