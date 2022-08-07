@@ -2,7 +2,7 @@ A basic Library CRUD API with Nest, TypeORM and MySQL. Improving complexity over
 
 Tables in the system so far:
 
-user(__id__, name, age, email, password)
+user(__id__, name, age, email, password, role)
 
 author(__id__, first_name, last_name, email)
 
