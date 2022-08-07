@@ -11,7 +11,7 @@ export class UserService {
     private userRepository: Repository<User>,
   ) {}
 
-  public findAll() {
+  public async findAll() {
     return this.userRepository.find();
   }
 

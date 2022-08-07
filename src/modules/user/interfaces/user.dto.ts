@@ -1,4 +1,4 @@
-import { Exclude } from 'class-transformer';
+import { classToPlain, Exclude, instanceToPlain } from 'class-transformer';
 import {
   IsEmail,
   IsEnum,
@@ -25,6 +25,11 @@ export class CreateUserDto {
   @IsNotEmpty()
   @IsEmail()
   email: string;
+
+  @IsNotEmpty()
+  @IsString()
+  @Length(5)
+  password: string;
 
   @IsNotEmpty()
   @IsEnum(ROLES_ENUM)
