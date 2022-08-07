@@ -5,9 +5,11 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { AUTHOR_RELATIONS } from 'src/modules/author/interfaces/author.entity';
+import { BOOK_RELATIONS } from 'src/modules/book/interfaces/book.entity';
 
 const RELATIONS = {
   author: AUTHOR_RELATIONS,
+  book: BOOK_RELATIONS,
 };
 
 @Injectable()
