@@ -19,3 +19,5 @@ export class Genre {
   @JoinTable()
   books: Book[];
 }
+
+export const GENRE_RELATIONS = ['books'];

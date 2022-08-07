@@ -20,3 +20,5 @@ export class Author {
   @OneToMany(() => Book, (book) => book.author)
   books: Book[];
 }
+
+export const AUTHOR_RELATIONS = ['books'];

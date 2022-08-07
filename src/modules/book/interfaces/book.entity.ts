@@ -39,3 +39,5 @@ export class Book {
   })
   genres: Genre[];
 }
+
+export const BOOK_RELATIONS = ['genres', 'author'];

@@ -1,7 +1,7 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateGenreDto } from '../interfaces/genre.dto';
+import { CreateGenreDto, UpdateGenreDto } from '../interfaces/genre.dto';
 import { Genre } from '../interfaces/genre.entity';
 
 @Injectable()
@@ -10,27 +10,26 @@ export class GenreService {
     @InjectRepository(Genre) private genreRepository: Repository<Genre>,
   ) {}
 
-  public async findAll() {
-    return this.genreRepository.find();
+  public async findAll(relations: string[]) {
+    return this.genreRepository.find({ relations });
   }
 
-  public async findOne(id: string) {
-    return this.genreRepository.findOne({ where: { id: +id } });
+  public async findOne(id: number, relations: string[]) {
+    return this.genreRepository.findOne({ where: { id }, relations });
   }
 
-  public async create(body: CreateGenreDto) {
-    const genreAlreadyExists = await this.genreRepository.findOne({
-      where: { name: body.name },
-    });
-
-    if (genreAlreadyExists) {
-      throw new ForbiddenException({
-        message: `The "${body.name}" genre already exists.`,
-      });
-    }
-
-    const newGenre = this.genreRepository.create(body);
+  public async create(payload: CreateGenreDto) {
+    const newGenre = this.genreRepository.create(payload);
 
     return this.genreRepository.save(newGenre);
+  }
+
+  public async update(genre: Genre, payload: UpdateGenreDto) {
+    const updatedGenre = this.genreRepository.create({
+      ...genre,
+      ...payload,
+    });
+
+    return this.genreRepository.save(updatedGenre);
   }
 }
