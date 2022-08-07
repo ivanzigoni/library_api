@@ -1,17 +1,15 @@
+import { Exclude } from 'class-transformer';
 import {
   IsEmail,
   IsEnum,
   IsNotEmpty,
   IsNumber,
+  IsOptional,
   IsString,
   Length,
   Min,
 } from 'class-validator';
-
-enum ROLES_ENUM {
-  ADMIN = 'admin',
-  USER = 'user',
-}
+import { ROLES_ENUM } from './user.entity';
 
 export class CreateUserDto {
   @IsNotEmpty()
@@ -29,6 +27,26 @@ export class CreateUserDto {
   email: string;
 
   @IsNotEmpty()
+  @IsEnum(ROLES_ENUM)
+  role: ROLES_ENUM;
+}
+
+export class UpdateUserDto {
+  @IsOptional()
+  @IsString()
+  @Length(1)
+  name: string;
+
+  @IsOptional()
+  @IsNumber()
+  @Min(10)
+  age: number;
+
+  @IsOptional()
+  @IsEmail()
+  email: string;
+
+  @IsOptional()
   @IsEnum(ROLES_ENUM)
   role: ROLES_ENUM;
 }
