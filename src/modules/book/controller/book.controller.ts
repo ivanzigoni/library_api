@@ -7,8 +7,6 @@ import {
   Post,
   Put,
   Query,
-  Req,
-  UsePipes,
 } from '@nestjs/common';
 import { RelationsValidationPipe } from 'src/common/pipes/RelationsValidationPipe.pipe';
 import { TestPipe } from 'src/common/pipes/TestPipe.pipe';

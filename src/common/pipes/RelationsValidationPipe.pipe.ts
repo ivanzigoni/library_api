@@ -6,10 +6,12 @@ import {
 } from '@nestjs/common';
 import { AUTHOR_RELATIONS } from 'src/modules/author/interfaces/author.entity';
 import { BOOK_RELATIONS } from 'src/modules/book/interfaces/book.entity';
+import { GENRE_RELATIONS } from 'src/modules/genre/interfaces/genre.entity';
 
 const RELATIONS = {
   author: AUTHOR_RELATIONS,
   book: BOOK_RELATIONS,
+  genre: GENRE_RELATIONS,
 };
 
 @Injectable()

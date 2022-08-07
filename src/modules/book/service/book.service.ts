@@ -66,7 +66,7 @@ export class BookService {
       newBook.genres = await this.genreRepository.find({ where: ORQuery });
     } else if (author_id) {
       newBook.author = await this.authorRepository.findOne({
-        where: { id: payload.author_id },
+        where: { id: author_id },
       });
     }
 
