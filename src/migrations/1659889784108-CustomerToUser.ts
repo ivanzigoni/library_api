@@ -6,7 +6,7 @@ export class CustomerToUser1659889784108 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(`
 
-    ALTER TABLE customer
+    ALTER TABLE user
     RENAME user,
     ADD role varchar(255); 
 
@@ -17,7 +17,7 @@ export class CustomerToUser1659889784108 implements MigrationInterface {
     await queryRunner.query(`
 
     ALTER TABLE user
-    RENAME customer,
+    RENAME user,
     DROP COLUMN role;
 
     `);
