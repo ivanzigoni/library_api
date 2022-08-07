@@ -11,7 +11,7 @@ import {
 import { CreateAuthorDto, UpdateAuthorDto } from '../interfaces/author.dto';
 import { Author } from '../interfaces/author.entity';
 import { CreateAuthorValidationPipe } from '../pipes/CreateAuthor.pipe';
-import { RelationsValidationPipe } from 'src/common/pipes/RelationsValidationPipe';
+import { RelationsValidationPipe } from 'src/common/pipes/RelationsValidationPipe.pipe';
 import { AuthorService } from '../service/author.service';
 import { AuthorExistanceValidationPipe } from '../pipes/UpdateAuthor.pipe';
 

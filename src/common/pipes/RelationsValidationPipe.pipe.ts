@@ -14,10 +14,7 @@ const RELATIONS = {
 
 @Injectable()
 export class RelationsValidationPipe extends ValidationPipe {
-  async transform(
-    query: { entity: string; relations: string },
-    // metadata: ArgumentMetadata,
-  ): Promise<any> {
+  async transform(query: { entity: string; relations: string }): Promise<any> {
     const { entity, relations } = query;
 
     if (!relations || !entity) return Promise.resolve([]);

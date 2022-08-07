@@ -7,7 +7,7 @@ import {
   Post,
   Query,
 } from '@nestjs/common';
-import { RelationsValidationPipe } from 'src/common/pipes/RelationsValidationPipe';
+import { RelationsValidationPipe } from 'src/common/pipes/RelationsValidationPipe.pipe';
 import { CreateGenreDto } from '../interfaces/genre.dto';
 import { GenreService } from '../service/genre.service';
 
