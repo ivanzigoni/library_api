@@ -32,4 +32,12 @@ export class UserService {
 
     return this.userRepository.save(newUser);
   }
+
+  // public async update2(
+  //   user: User,
+  //   payload: UpdateUserDto,
+  //   filter: { filter1: boolean; filter2: boolean },
+  // ) {
+
+  // }
 }

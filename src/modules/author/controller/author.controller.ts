@@ -7,6 +7,7 @@ import {
   Post,
   Put,
   Query,
+  UseInterceptors,
 } from '@nestjs/common';
 import { CreateAuthorDto, UpdateAuthorDto } from '../interfaces/author.dto';
 import { Author } from '../interfaces/author.entity';
@@ -14,12 +15,14 @@ import { CreateAuthorValidationPipe } from '../pipes/CreateAuthor.pipe';
 import { RelationsValidationPipe } from 'src/common/pipes/RelationsValidationPipe.pipe';
 import { AuthorService } from '../service/author.service';
 import { AuthorExistanceValidationPipe } from '../pipes/UpdateAuthor.pipe';
+import { TestInterceptor } from 'src/common/interceptors/test.interceptor';
 
 @Controller('author')
 export class AuthorController {
   constructor(private authorService: AuthorService) {}
 
   // query example: ?relations=books,otherRelation,another,etc
+  @UseInterceptors(TestInterceptor)
   @Get()
   async getAllAuthors(@Query(RelationsValidationPipe) relations: string[]) {
     return this.authorService.findAll(relations);
@@ -34,6 +37,7 @@ export class AuthorController {
   }
 
   @Post()
+  @UseInterceptors(TestInterceptor)
   async createOneAuthor(
     @Body(CreateAuthorValidationPipe) author: CreateAuthorDto,
   ) {
