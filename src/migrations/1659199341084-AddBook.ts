@@ -1,4 +1,5 @@
 import { MigrationInterface, QueryRunner } from 'typeorm';
+import {query} from "express";
 
 export class AddBook1659199341084 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {

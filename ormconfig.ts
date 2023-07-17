@@ -19,7 +19,7 @@ const config: MysqlConnectionOptions = {
   password: MYSQL_PASSWORD,
   database: MYSQL_DATABASE,
   entities: ['dist/**/*.entity.js'],
-  // migrations: ['src/migrations/*.ts'],
+  migrations: ['src/migrations/*.ts'],
   // uncomment only when running migrations, otherwise it'll break lol
   synchronize: false,
 };

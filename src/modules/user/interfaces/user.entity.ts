@@ -19,7 +19,7 @@ export class User {
   name: string;
 
   @Column()
-  age: number;
+  age: string;
 
   @Column()
   @Exclude({ toPlainOnly: true })
