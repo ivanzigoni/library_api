@@ -7,7 +7,7 @@ import {
   IsOptional,
   IsString,
   Length,
-  Min,
+  Min, MinLength,
 } from 'class-validator';
 import { ROLES_ENUM } from './user.entity';
 
@@ -18,9 +18,9 @@ export class CreateUserDto {
   name: string;
 
   @IsNotEmpty()
-  @IsNumber()
-  @Min(10)
-  age: number;
+  @IsString()
+  @MinLength(10)
+  age: string;
 
   @IsNotEmpty()
   @IsEmail()
@@ -43,9 +43,9 @@ export class UpdateUserDto {
   name: string;
 
   @IsOptional()
-  @IsNumber()
-  @Min(10)
-  age: number;
+  @IsString()
+  @MinLength(10)
+  age: string;
 
   @IsOptional()
   @IsEmail()
