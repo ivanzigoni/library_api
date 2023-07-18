@@ -81,6 +81,19 @@ export class BookController {
     return this.bookService.create(book);
   }
 
+  @ApiResponse({
+    status: '2XX',
+    type: BookResponse,
+  })
+  @ApiParam({
+    name: 'id',
+    type: 'string',
+    required: true,
+  })
+  @ApiBody({
+    type: UpdateBookDto,
+    required: true,
+  })
   @Put(':id')
   async updateOneBook(
     @Param('id', BookExistanceValidationPipe) book: Book,
