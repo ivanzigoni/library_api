@@ -68,7 +68,7 @@ export class AuthorController {
   async createOneAuthor(
     @Body(CreateAuthorValidationPipe) author: CreateAuthorDto,
   ) {
-    return this.authorService.create(author as Author);
+    return this.authorService.create(author);
   }
 
   @ApiResponse({ type: AuthorResponse, status: '2XX' })

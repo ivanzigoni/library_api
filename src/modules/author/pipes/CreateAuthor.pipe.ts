@@ -23,12 +23,10 @@ export class CreateAuthorValidationPipe extends ValidationPipe {
   async transform(
     authorDto: CreateAuthorDto,
     // metadata: ArgumentMetadata,
-  ): Promise<Author> {
+  ): Promise<CreateAuthorDto> {
     await this.validate(authorDto);
 
-    const author = this.authorRepository.create(authorDto);
-
-    return Promise.resolve(author);
+    return authorDto;
   }
   protected async validate(
     author: CreateAuthorDto,

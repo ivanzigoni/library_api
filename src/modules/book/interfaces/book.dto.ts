@@ -3,6 +3,7 @@ import {
   IsArray,
   IsNotEmpty,
   IsNumber,
+  IsNumberString,
   IsOptional,
   IsString,
 } from 'class-validator';
@@ -23,7 +24,7 @@ export class CreateBookDto {
     type: 'string',
     required: true,
   })
-  @IsNumber()
+  @IsNumberString()
   @IsNotEmpty()
   author_id: number;
 
