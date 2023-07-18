@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { RelationsValidationPipe } from 'src/common/pipes/RelationsValidationPipe.pipe';
 import { CreateBookDto, UpdateBookDto } from '../interfaces/book.dto';
-import { Book } from '../interfaces/book.entity';
+import { Book, BOOK_RELATIONS } from '../interfaces/book.entity';
 import { CreateBookValidationPipe } from '../pipes/CreateBook.pipe';
 import {
   BookExistanceValidationPipe,
@@ -39,6 +39,7 @@ export class BookController {
     name: 'relations',
     type: 'string',
     description: 'relations separated by comma',
+    example: BOOK_RELATIONS.toString(),
     required: false,
   })
   @Get()
@@ -59,6 +60,7 @@ export class BookController {
     name: 'relations',
     type: 'string',
     description: 'relations separated by comma',
+    example: BOOK_RELATIONS.toString(),
     required: false,
   })
   @Get(':id')
@@ -75,6 +77,7 @@ export class BookController {
   })
   @ApiBody({
     type: CreateBookDto,
+    required: true,
   })
   @Post()
   async postOneBook(@Body(CreateBookValidationPipe) book: CreateBookDto) {

@@ -34,5 +34,3 @@ export class AuthorResponse {
   })
   books?: BookResponse[];
 }
-
-export const AUTHOR_RELATIONS = ['books'];

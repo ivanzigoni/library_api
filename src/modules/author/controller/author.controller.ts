@@ -9,7 +9,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { CreateAuthorDto, UpdateAuthorDto } from '../interfaces/author.dto';
-import { Author } from '../interfaces/author.entity';
+import { Author, AUTHOR_RELATIONS } from '../interfaces/author.entity';
 import { CreateAuthorValidationPipe } from '../pipes/CreateAuthor.pipe';
 import { RelationsValidationPipe } from 'src/common/pipes/RelationsValidationPipe.pipe';
 import { AuthorService } from '../service/author.service';
@@ -33,7 +33,7 @@ export class AuthorController {
     name: 'relations',
     description: 'relations separated by commas',
     required: false,
-    example: '?relations=books,otherRelation,another,etc',
+    example: AUTHOR_RELATIONS.toString(),
   })
   // query example: ?relations=books,otherRelation,another,etc
   @Get()
@@ -46,8 +46,9 @@ export class AuthorController {
   @ApiResponse({ type: AuthorResponse, status: '2XX' })
   @ApiQuery({
     name: 'relations',
+    description: 'relations separated by commas',
     required: false,
-    description: 'relations for author separeted by commas',
+    example: AUTHOR_RELATIONS.toString(),
   })
   @ApiParam({ name: 'id', type: 'string', required: true })
   @Get(':id')
@@ -72,6 +73,10 @@ export class AuthorController {
 
   @ApiResponse({ type: AuthorResponse, status: '2XX' })
   @ApiParam({ name: 'id', type: 'string' })
+  @ApiBody({
+    type: UpdateAuthorDto,
+    required: true,
+  })
   @Put(':id')
   async updateOneAuthor(
     @Param('id', AuthorExistanceValidationPipe) author: Author,

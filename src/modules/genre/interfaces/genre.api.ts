@@ -20,5 +20,3 @@ export class GenreResponse {
   })
   books: BookResponse[];
 }
-
-export const GENRE_RELATIONS = ['books'];

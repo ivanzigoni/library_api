@@ -4,6 +4,7 @@ import {
   IsEnum,
   IsNotEmpty,
   IsNumber,
+  IsNumberString,
   IsOptional,
   IsString,
   Length,
@@ -82,7 +83,7 @@ export class UpdateUserDto {
     required: false,
   })
   @IsOptional()
-  @IsString()
+  @IsNumberString()
   age: string;
 
   @ApiProperty({
