@@ -22,8 +22,6 @@ Adding some more columns to existing entities and delete functionality for all c
 
 - no seeds available for now
 
-- swagger doc to be implemented
-
 - "npm start" for running the api
 
 - "npm run start:dev" for running the api on watch mode
