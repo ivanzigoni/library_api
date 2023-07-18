@@ -14,17 +14,42 @@ import { CreateAuthorValidationPipe } from '../pipes/CreateAuthor.pipe';
 import { RelationsValidationPipe } from 'src/common/pipes/RelationsValidationPipe.pipe';
 import { AuthorService } from '../service/author.service';
 import { AuthorExistanceValidationPipe } from '../pipes/UpdateAuthor.pipe';
+import {
+  ApiBody,
+  ApiParam,
+  ApiQuery,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
+import { AuthorResponse } from '../interfaces/author.api';
 
+@ApiTags('Author')
 @Controller('author')
 export class AuthorController {
   constructor(private authorService: AuthorService) {}
 
+  @ApiResponse({ type: [AuthorResponse], status: '2XX' })
+  @ApiQuery({
+    name: 'relations',
+    description: 'relations separated by commas',
+    required: false,
+    example: '?relations=books,otherRelation,another,etc',
+  })
   // query example: ?relations=books,otherRelation,another,etc
   @Get()
-  async getAllAuthors(@Query(RelationsValidationPipe) relations: string[]) {
+  async getAllAuthors(
+    @Query(RelationsValidationPipe) relations: string[],
+  ): Promise<AuthorResponse[]> {
     return this.authorService.findAll(relations);
   }
 
+  @ApiResponse({ type: AuthorResponse, status: '2XX' })
+  @ApiQuery({
+    name: 'relations',
+    required: false,
+    description: 'relations for author separeted by commas',
+  })
+  @ApiParam({ name: 'id', type: 'string', required: true })
   @Get(':id')
   async getOneAuthorById(
     @Param('id', ParseIntPipe) id: number,
@@ -33,6 +58,11 @@ export class AuthorController {
     return this.authorService.findOne(id, relations);
   }
 
+  @ApiResponse({ type: AuthorResponse, status: '2XX' })
+  @ApiBody({
+    type: CreateAuthorDto,
+    description: 'values for registering new author into the system',
+  })
   @Post()
   async createOneAuthor(
     @Body(CreateAuthorValidationPipe) author: CreateAuthorDto,
@@ -40,6 +70,8 @@ export class AuthorController {
     return this.authorService.create(author as Author);
   }
 
+  @ApiResponse({ type: AuthorResponse, status: '2XX' })
+  @ApiParam({ name: 'id', type: 'string' })
   @Put(':id')
   async updateOneAuthor(
     @Param('id', AuthorExistanceValidationPipe) author: Author,
