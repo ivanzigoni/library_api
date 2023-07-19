@@ -1,13 +1,19 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateAuthorDto, UpdateAuthorDto } from '../interfaces/author.dto';
 import { Author } from '../interfaces/author.entity';
+import { AuthorValidationService } from './author-validation.service';
 
 @Injectable()
 export class AuthorService {
   constructor(
     @InjectRepository(Author) private authorRepository: Repository<Author>,
+    private authorValidator: AuthorValidationService,
   ) {}
 
   public async findAll(relations: string[]) {
@@ -25,6 +31,12 @@ export class AuthorService {
   }
 
   public async create(authorDto: CreateAuthorDto) {
+    try {
+      await this.authorValidator.createValidation(authorDto);
+    } catch (err) {
+      throw new BadRequestException(err.message);
+    }
+
     return this.authorRepository.save(this.authorRepository.create(authorDto));
   }
 
