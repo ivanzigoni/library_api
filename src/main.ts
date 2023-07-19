@@ -21,7 +21,7 @@ function swagger(app: INestApplication) {
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.useGlobalPipes(new ValidationPipe());
+  // app.useGlobalPipes(new ValidationPipe());
 
   swagger(app);
 

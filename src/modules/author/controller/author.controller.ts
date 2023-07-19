@@ -66,7 +66,8 @@ export class AuthorController {
   })
   @Post()
   async createOneAuthor(
-    @Body(CreateAuthorValidationPipe) author: CreateAuthorDto,
+    // @Body(CreateAuthorValidationPipe) author: CreateAuthorDto,
+    @Body() author: CreateAuthorDto,
   ) {
     return this.authorService.create(author);
   }
