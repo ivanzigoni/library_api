@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  db:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=123456
+      - MYSQL_PORT=3306
+      - MYSQL_DATABASE=library
+    ports:
+      - 3306:3306
